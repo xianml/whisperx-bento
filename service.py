@@ -24,10 +24,9 @@ class Whisper(bentoml.Runnable):
     @bentoml.Runnable.method(batchable=False)
     def decode(self, data: bytes):
         audio_nparray = ffmpeg_read(data, SAMPLE_RATE)
-        audio_tensor= torch.from_numpy(audio_nparray)
 
         #1. Transcribe with original whisper (batched)
-        result = self.model.transcribe(audio_tensor)
+        result = self.model.transcribe(audio_nparray)
 
         # 2. Align whisper output
         model_a, metadata = whisperx.load_align_model(language_code=result["language"], device=self.device)
