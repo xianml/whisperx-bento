@@ -1,0 +1,6 @@
+openai-whisper
+bentoml
+torch
+numpy
+transformers
+git+https://github.com/m-bain/whisperx.git
